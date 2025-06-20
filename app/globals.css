@@ -1,0 +1,245 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Variables CSS para temas */
+@layer base {
+  :root {
+    --background: 255 255 255;
+    --foreground: 15 23 42;
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
+    --popover: 255 255 255;
+    --popover-foreground: 15 23 42;
+    --primary: 59 130 246;
+    --primary-foreground: 255 255 255;
+    --secondary: 241 245 249;
+    --secondary-foreground: 51 65 85;
+    --muted: 248 250 252;
+    --muted-foreground: 100 116 139;
+    --accent: 241 245 249;
+    --accent-foreground: 51 65 85;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 59 130 246;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 2 6 23;
+    --foreground: 248 250 252;
+    --card: 15 23 42;
+    --card-foreground: 248 250 252;
+    --popover: 15 23 42;
+    --popover-foreground: 248 250 252;
+    --primary: 99 102 241;
+    --primary-foreground: 255 255 255;
+    --secondary: 30 41 59;
+    --secondary-foreground: 226 232 240;
+    --muted: 30 41 59;
+    --muted-foreground: 148 163 184;
+    --accent: 30 41 59;
+    --accent-foreground: 226 232 240;
+    --destructive: 220 38 38;
+    --destructive-foreground: 255 255 255;
+    --border: 51 65 85;
+    --input: 51 65 85;
+    --ring: 129 140 248;
+  }
+}
+
+/* Configuración base */
+@layer base {
+  * {
+    @apply border-border;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Utilidades personalizadas */
+@layer utilities {
+  /* Clases de fondo y texto que usan las variables CSS */
+  .bg-background {
+    background-color: rgb(var(--background));
+  }
+  
+  .bg-background-alpha {
+    background-color: rgba(var(--background), 0.8);
+  }
+  
+  .text-foreground {
+    color: rgb(var(--foreground));
+  }
+  
+  .bg-card {
+    background-color: rgb(var(--card));
+  }
+  
+  .text-card-foreground {
+    color: rgb(var(--card-foreground));
+  }
+  
+  .bg-primary {
+    background-color: rgb(var(--primary));
+  }
+  
+  .text-primary-foreground {
+    color: rgb(var(--primary-foreground));
+  }
+  
+  .bg-secondary {
+    background-color: rgb(var(--secondary));
+  }
+  
+  .text-secondary-foreground {
+    color: rgb(var(--secondary-foreground));
+  }
+  
+  .bg-muted {
+    background-color: rgb(var(--muted));
+  }
+  
+  .text-muted-foreground {
+    color: rgb(var(--muted-foreground));
+  }
+  
+  .border-border {
+    border-color: rgb(var(--border));
+  }
+  
+  .border-border-alpha {
+    border-color: rgba(var(--border), 0.3);
+  }
+
+  /* Animaciones personalizadas */
+  @keyframes lava-lamp {
+    0%, 100% {
+      transform: rotate(0deg) scale(1);
+    }
+    33% {
+      transform: rotate(120deg) scale(1.1);
+    }
+    66% {
+      transform: rotate(240deg) scale(0.9);
+    }
+  }
+
+  .animate-lava-lamp {
+    animation: lava-lamp 20s ease-in-out infinite;
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+
+  /* Efectos de Northern Lights */
+  .northern-lights {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .northern-light {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.6) 0%, rgba(0, 255, 255, 0.2) 30%, transparent 70%);
+    animation: northern-lights var(--duration, 15s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+    left: calc(var(--x, 50) * 1%);
+    top: calc(var(--y, 50) * 1%);
+    transform: scale(var(--scale, 1));
+  }
+
+  @keyframes northern-lights {
+    0%, 100% {
+      transform: translate(0, 0) scale(var(--scale, 1));
+      opacity: 0.3;
+    }
+    25% {
+      transform: translate(30px, -20px) scale(calc(var(--scale, 1) * 1.2));
+      opacity: 0.6;
+    }
+    50% {
+      transform: translate(-20px, 40px) scale(calc(var(--scale, 1) * 0.8));
+      opacity: 0.4;
+    }
+    75% {
+      transform: translate(40px, 20px) scale(calc(var(--scale, 1) * 1.1));
+      opacity: 0.7;
+    }
+  }
+
+  /* Mejoras de rendimiento */
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  /* Estilo para el scroll */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: rgb(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(var(--muted-foreground));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(var(--foreground));
+  }
+
+  /* Prevenir flash de contenido sin estilo */
+  .theme-transition {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Glassmorphism effects */
+  .glass {
+    background: rgba(var(--background), 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--border), 0.2);
+  }
+
+  .glass-dark {
+    background: rgba(var(--card), 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--border), 0.2);
+  }
+}
