@@ -4,6 +4,7 @@ const nextConfig = {
     domains: [
       'cdn.ejemplo.com',
       'i.blogs.es',
+      'i.postimg.cc'
     ],
   },
 };

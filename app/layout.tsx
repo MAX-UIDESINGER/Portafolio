@@ -8,9 +8,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en' suppressHydrationWarning>
       <body className='relative overflow-x-hidden overflow-y-auto '>  
-        <ThemeProvider defaultTheme="system" storageKey="pool-martin-theme">
-          <div className="overflow-hidden relative min-h-screen">
-            {/* Gradiente decorativo en la esquina superior izquierda */}
+        {/* <ThemeProvider defaultTheme="system" storageKey="pool-martin-theme"> */}
+          {/* <div className="overflow-hidden relative min-h-screen"> */}
+            {/* Gradiente decorativo en la esquina superior izquierda
             <div
               aria-hidden="true"
               className="pointer-events-none absolute -left-64 -top-64 -z-20 w-[1200px] h-[900px] opacity-40 dark:opacity-40 blur-[160px]"
@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
 
             {/* Gradiente decorativo abajo a la derecha */}
-            <div
+            {/* <div
               aria-hidden="true"
               className="absolute right-0 bottom-0 -z-10 w-[900px] h-[600px] opacity-25 dark:opacity-25 blur-[120px] translate-x-1/4"
             >
@@ -36,12 +36,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 }}
                 className="w-full h-full bg-gradient-to-tr from-[#ff3b8a] to-[#6d28d9] dark:from-[#ff3b8a] dark:to-[#6d28d9] animate-lava-lamp"
               />
-            </div>
-            <NavBar />
+            </div> */} 
+            {/* <NavBar /> */}
             {children}
-            <Footer />
-          </div>
-        </ThemeProvider>
+            {/* <Footer /> */}
+          {/* </div> */}
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );

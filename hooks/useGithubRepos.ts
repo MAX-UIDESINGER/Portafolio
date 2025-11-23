@@ -1,21 +1,22 @@
 "use client";
-import { useEffect, useState } from "react";
+import useSWR from "swr";
 import { Repo } from "@/types";
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 export function useGithubRepos() {
-  const [repos, setRepos] = useState<Repo[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchRepos() {
-      setLoading(true);
-      const res = await fetch("/api/github-repos");
-      const data = await res.json();
-      setRepos(data);
-      setLoading(false);
+  const { data, error, isLoading } = useSWR<Repo[]>(
+    "/api/github-repos", // tu endpoint
+    fetcher,
+    {
+      revalidateOnFocus: true, // refresca si vuelves a la pestaña
+      dedupingInterval: 60000, // evita llamar más de 1 vez por minuto
     }
-    fetchRepos();
-  }, []);
+  );
 
-  return { repos, loading };
+  return {
+    repos: data || [],
+    loading: isLoading,
+    error,
+  };
 }
