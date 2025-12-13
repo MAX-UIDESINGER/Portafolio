@@ -219,10 +219,10 @@ const Inicio: React.FC = () => {
             </span>
             <span className="text-white font-mono text-sm">=</span>
             <a
-              href="https://github.com/example/url"
+              href="https://github.com/MAX-UIDESINGER"
               className="text-[#FFA1AD] font-mono text-sm break-all"
             >
-              "https://github.com/example/url"
+              "https://github.com/MAX-UIDESINGER"
             </a>
           </div>
         </div>
